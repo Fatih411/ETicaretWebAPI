@@ -1,0 +1,82 @@
+2023-10-27 00:03:39.036 +03:00 [INF] User profile is available. Using 'C:\Users\fatih\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-10-27 00:03:39.393 +03:00 [INF] Now listening on: http://localhost:5000
+2023-10-27 00:03:39.394 +03:00 [INF] Now listening on: https://localhost:5001
+2023-10-27 00:03:39.399 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-10-27 00:03:39.400 +03:00 [INF] Hosting environment: Production
+2023-10-27 00:03:39.401 +03:00 [INF] Content root path: D:\ETicaretUygulamasi\ETicaretAPI\Presentation\ETicaretAPI.API\bin\Debug\net6.0\
+2023-10-27 00:03:56.678 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/ - -
+2023-10-27 00:03:56.733 +03:00 [INF] Request:
+Protocol: HTTP/1.1
+Method: GET
+Scheme: http
+PathBase: 
+Path: /
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Connection: keep-alive
+Host: localhost:5000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36
+Accept-Encoding: gzip, deflate, br
+Accept-Language: tr,en;q=0.9
+Cookie: [Redacted]
+Upgrade-Insecure-Requests: [Redacted]
+sec-ch-ua: "Chromium";v="118", "Google Chrome";v="118", "Not=A?Brand";v="99"
+sec-ch-ua-mobile: [Redacted]
+sec-ch-ua-platform: [Redacted]
+Sec-Fetch-Site: [Redacted]
+Sec-Fetch-Mode: [Redacted]
+Sec-Fetch-User: [Redacted]
+Sec-Fetch-Dest: [Redacted]
+2023-10-27 00:03:56.747 +03:00 [INF] Response:
+StatusCode: 307
+Location: https://localhost:5001/
+2023-10-27 00:03:56.775 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/ - - - 307 0 - 101.0512ms
+2023-10-27 00:03:56.877 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/ - -
+2023-10-27 00:03:56.878 +03:00 [INF] Request:
+Protocol: HTTP/2
+Method: GET
+Scheme: https
+PathBase: 
+Path: /
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Host: localhost:5001
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36
+:method: [Redacted]
+Accept-Encoding: gzip, deflate, br
+Accept-Language: tr,en;q=0.9
+Cookie: [Redacted]
+Upgrade-Insecure-Requests: [Redacted]
+sec-fetch-site: [Redacted]
+sec-fetch-mode: [Redacted]
+sec-fetch-user: [Redacted]
+sec-fetch-dest: [Redacted]
+sec-ch-ua: "Chromium";v="118", "Google Chrome";v="118", "Not=A?Brand";v="99"
+sec-ch-ua-mobile: [Redacted]
+sec-ch-ua-platform: [Redacted]
+2023-10-27 00:03:56.906 +03:00 [INF] Response:
+StatusCode: 404
+2023-10-27 00:03:56.913 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/ - - - 404 0 - 36.0979ms
+2023-10-27 00:04:00.378 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/ - -
+2023-10-27 00:04:00.378 +03:00 [INF] Request:
+Protocol: HTTP/2
+Method: GET
+Scheme: https
+PathBase: 
+Path: /
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Host: localhost:5001
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36
+:method: [Redacted]
+Accept-Encoding: gzip, deflate, br
+Accept-Language: tr,en;q=0.9
+Cookie: [Redacted]
+Upgrade-Insecure-Requests: [Redacted]
+sec-ch-ua: "Chromium";v="118", "Google Chrome";v="118", "Not=A?Brand";v="99"
+sec-ch-ua-mobile: [Redacted]
+sec-ch-ua-platform: [Redacted]
+sec-fetch-site: [Redacted]
+sec-fetch-mode: [Redacted]
+sec-fetch-user: [Redacted]
+sec-fetch-dest: [Redacted]
+2023-10-27 00:04:00.380 +03:00 [INF] Response:
+StatusCode: 404
+2023-10-27 00:04:00.382 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/ - - - 404 0 - 4.5724ms
