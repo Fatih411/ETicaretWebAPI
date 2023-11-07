@@ -20,7 +20,7 @@ namespace ETicaretAPISignalR.HubServices
 
         public async Task OrderAddedMessageAsync(string message)
         {
-           await _hubContext.Clients.All.SendAsync(ReceiveFunctionNames.ProductAddedMessage,message);
+           await _hubContext.Clients.All.SendAsync(ReceiveFunctionNames.OrderAddedMessage, message);
         }
     }
 }

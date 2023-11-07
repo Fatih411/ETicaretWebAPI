@@ -2,6 +2,7 @@
 using ETicaretAPI.Application.Repositories;
 using ETicaretAPI.Application.Repositories.Basket;
 using ETicaretAPI.Application.Repositories.BasketItem;
+using ETicaretAPI.Application.Repositories.CompletedOrder;
 using ETicaretAPI.Application.Repositories.File;
 using ETicaretAPI.Application.Repositories.InvoiceFile;
 using ETicaretAPI.Application.Repositories.ProductImageFile;
@@ -10,8 +11,10 @@ using ETicaretAPI.Persistence.Contexts;
 using ETicaretAPI.Persistence.Repositories;
 using ETicaretAPI.Persistence.Repositories.Basket;
 using ETicaretAPI.Persistence.Repositories.BasketItem;
+using ETicaretAPI.Persistence.Repositories.CompletedOrder;
 using ETicaretAPI.Persistence.Repositories.File;
 using ETicaretAPI.Persistence.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -33,7 +36,8 @@ namespace ETicaretAPI.Persistence
                 options.Password.RequireDigit= false;
                 options.Password.RequireLowercase= false;
                 options.Password.RequireUppercase = false;
-            }).AddEntityFrameworkStores<ETicaretAPIDbContext>();
+            }).AddEntityFrameworkStores<ETicaretAPIDbContext>()
+            .AddDefaultTokenProviders();
 
             services.AddDbContext<ETicaretAPIDbContext>(options => options.UseSqlServer(Configuration.ConnectionString) );
 
@@ -57,13 +61,18 @@ namespace ETicaretAPI.Persistence
 
             services.AddScoped<IBasketReadRepository, BasketReadRepository>();
             services.AddScoped<IBasketWriteRepository, BasketWriteRepository>();
+
             services.AddScoped<IBasketItemReadRepository, BasketItemReadRepository>();
             services.AddScoped<IBasketItemWriteRepository, BasketItemWriteRepository>();
+
+            services.AddScoped<ICompletedOrderReadRepository, CompletedOrderReadRepository>();
+            services.AddScoped<ICompletedOrderWriteRepository,CompletedOrderWriteRepository>();
 
 
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IBasketService, BasketService>();
+            services.AddScoped<IOrderService, OrderService>();
             
         }
     }

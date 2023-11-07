@@ -22,15 +22,20 @@ namespace ETicaretAPI.Application.Features.Commands.Product.CreateProduct
 
         public async Task<CreateProductCommandResponse> Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
         {
-            await _productWriteRepository.AddAsync(new()
+            if (request.Name != "" && request.Price > 0 && request.Stock > 0)
             {
-                Name = request.Name,
-                Price = request.Price,
-                Stock = request.Stock,
-            });
-            await _productWriteRepository.SaveAsync();
-            await _productHubService.ProductAddedMessageAsync($"{request.Name} isminde ürün eklendi.");
-            return new();
+                await _productWriteRepository.AddAsync(new()
+                {
+                    Name = request.Name,
+                    Price = request.Price,
+                    Stock = request.Stock,
+                });
+                await _productWriteRepository.SaveAsync();
+                await _productHubService.ProductAddedMessageAsync($"{request.Name} isminde ürün eklendi.");
+                return new();
+            }
+            throw new Exception("Ürün eklenirken bir sorun oluştu");
+
         }
     }
 }

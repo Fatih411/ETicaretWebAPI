@@ -14,6 +14,7 @@ namespace ETicaretAPISignalR
         public static void AddSignalServices(this IServiceCollection collection)
         {
             collection.AddTransient<IProductHubService, ProductHubService>();
+            collection.AddTransient<IOrderHubService, OrderHubService>();
             collection.AddSignalR();
         }
     }

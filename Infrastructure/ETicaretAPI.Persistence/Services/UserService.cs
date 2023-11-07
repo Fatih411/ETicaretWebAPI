@@ -3,9 +3,11 @@ using ETicaretAPI.Application.Abstractions.Services;
 using ETicaretAPI.Application.DTOs.User;
 using ETicaretAPI.Application.Exceptions;
 using ETicaretAPI.Application.Features.Commands.AppUser.CreateUser;
+using ETicaretAPI.Application.Helpers;
 using ETicaretAPI.Domain.Entites.Identity;
 using Google.Apis.Logging;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -48,8 +50,7 @@ namespace ETicaretAPI.Persistence.Services
 
             return response;
         }
-
-        public async Task UpdateRefreshToken(string refreshToken, AppUser user,DateTime accessTokenDate,int addOnAccessTokenDate)
+        public async Task UpdateRefreshTokenAsync(string refreshToken, AppUser user,DateTime accessTokenDate,int addOnAccessTokenDate)
         {
             if (user != null) 
             {
@@ -65,7 +66,24 @@ namespace ETicaretAPI.Persistence.Services
             }
                
         }
-   
-        
+        public async Task UpdatePasswordAsync(string userId, string resetToken, string newPassword)
+        {
+            AppUser user = await _userManager.FindByIdAsync(userId);
+            if(user != null)
+            {
+               
+                resetToken = CustomEncoders.UrlDecode(resetToken);
+                IdentityResult result = await _userManager.ResetPasswordAsync(user,resetToken,newPassword);
+                if (result.Succeeded)
+                {
+                    await _userManager.UpdateSecurityStampAsync(user);
+                }
+                else
+                {
+                    throw new Exception("Şifre güncellerken bir hata yaşandı");
+                }
+            }
+        }
+
     }
 }
