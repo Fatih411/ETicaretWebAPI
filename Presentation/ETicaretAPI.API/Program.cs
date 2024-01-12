@@ -1,5 +1,6 @@
 using ETicaretAPI.API.Configurations;
 using ETicaretAPI.API.Extensions;
+using ETicaretAPI.API.Filters;
 using ETicaretAPI.Application;
 using ETicaretAPI.Application.Validators.Products;
 using ETicaretAPI.Infrastructure;
@@ -78,7 +79,7 @@ builder.Services.AddHttpLogging(logging =>
 
 builder.Services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
 builder.Services.AddValidatorsFromAssemblyContaining<CreateProductValidator>();
-builder.Services.AddControllers(options => options.Filters.Add<ValitadionFilter>())
+builder.Services.AddControllers(options => { options.Filters.Add<ValitadionFilter>(); options.Filters.Add<RolePermissionFilter>(); })
     .ConfigureApiBehaviorOptions(options => options.SuppressModelStateInvalidFilter = true);
 
 

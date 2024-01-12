@@ -1,9 +1,16 @@
 ﻿using ETicaretAPI.Application.Abstractions.Services;
+using ETicaretAPI.Application.CustomAttributes;
+using ETicaretAPI.Application.Enums;
+using ETicaretAPI.Application.Features.Commands.AppUser.AssignRoleToUser;
 using ETicaretAPI.Application.Features.Commands.AppUser.CreateUser;
 using ETicaretAPI.Application.Features.Commands.AppUser.GoogleLogin;
 using ETicaretAPI.Application.Features.Commands.AppUser.LoginUser;
 using ETicaretAPI.Application.Features.Commands.AppUser.UpdatePassword;
+using ETicaretAPI.Application.Features.Queries.Order.GetAllOrder;
+using ETicaretAPI.Application.Features.Queries.User.GetAllUser;
+using ETicaretAPI.Application.Features.Queries.User.GetRolesToUser;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -31,6 +38,34 @@ namespace ETicaretAPI.API.Controllers
         public async Task<IActionResult> UpdatePassword([FromBody] UpdatePasswordCommandRequest updatePasswordCommandRequest)
         {
             UpdatePasswordCommandResponse response = await _mediator.Send(updatePasswordCommandRequest);
+            return Ok(response);
+        }
+
+        [HttpGet]
+        [Authorize(AuthenticationSchemes ="admin")]
+        [AuthorizeDefinition(ActionType =ActionType.Reading,Definition ="Get All Users",Menu ="User")]
+        public async Task<IActionResult> GetAllUsers([FromQuery] GetAllUsersQueryRequest getAllUsersQueryRequest)
+        {
+            GetAllUsersQueryResponse response = await _mediator.Send(getAllUsersQueryRequest);
+            return Ok(response);
+        }
+
+        [HttpGet("get-roles-to-user/{UserId}")]
+        [Authorize(AuthenticationSchemes = "admin")]
+        [AuthorizeDefinition(ActionType = ActionType.Reading, Definition = "Get Roles to User", Menu = "User")]
+        public async Task<IActionResult> GetRolesToUser([FromRoute] GetRolesToUserQueryRequest getRolesToUserQueryRequest)
+        {
+            GetRolesToUserQueryResponse response = await _mediator.Send(getRolesToUserQueryRequest);
+            return Ok(response);
+        }
+
+        [HttpPost("assign-role-to-user")]
+        [Authorize(AuthenticationSchemes = "admin")]
+        [AuthorizeDefinition(ActionType = ActionType.Reading, Definition = "Assign Role To User", Menu = "User")]
+
+        public async Task<IActionResult> AssignRoleToUser([FromBody]AssignRoleToUserCommandRequest roleToUserCommandRequest)
+        {
+            AssignRoleToUserCommandResponse response = await _mediator.Send(roleToUserCommandRequest);
             return Ok(response);
         }
 

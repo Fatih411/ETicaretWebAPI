@@ -1,10 +1,13 @@
-﻿using ETicaretAPI.Application.Abstractions.Services;
+﻿using ETicaretAPI.Application.Abstractions;
+using ETicaretAPI.Application.Abstractions.Services;
 using ETicaretAPI.Application.Repositories;
 using ETicaretAPI.Application.Repositories.Basket;
 using ETicaretAPI.Application.Repositories.BasketItem;
 using ETicaretAPI.Application.Repositories.CompletedOrder;
+using ETicaretAPI.Application.Repositories.Endpoint;
 using ETicaretAPI.Application.Repositories.File;
 using ETicaretAPI.Application.Repositories.InvoiceFile;
+using ETicaretAPI.Application.Repositories.Menu;
 using ETicaretAPI.Application.Repositories.ProductImageFile;
 using ETicaretAPI.Domain.Entites.Identity;
 using ETicaretAPI.Persistence.Contexts;
@@ -12,7 +15,9 @@ using ETicaretAPI.Persistence.Repositories;
 using ETicaretAPI.Persistence.Repositories.Basket;
 using ETicaretAPI.Persistence.Repositories.BasketItem;
 using ETicaretAPI.Persistence.Repositories.CompletedOrder;
+using ETicaretAPI.Persistence.Repositories.Endpoint;
 using ETicaretAPI.Persistence.Repositories.File;
+using ETicaretAPI.Persistence.Repositories.Menu;
 using ETicaretAPI.Persistence.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -68,11 +73,19 @@ namespace ETicaretAPI.Persistence
             services.AddScoped<ICompletedOrderReadRepository, CompletedOrderReadRepository>();
             services.AddScoped<ICompletedOrderWriteRepository,CompletedOrderWriteRepository>();
 
+            services.AddScoped<IMenuWriteRepository,MenuWriteRepository>();
+            services.AddScoped<IMenuReadRepository,MenuReadRepository>();
+            
+            services.AddScoped<IEndpointReadRepository,EndpointReadRepository>();
+            services.AddScoped<IEndpointWriteRepository,EndpointWriteRepository>();
+
 
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IBasketService, BasketService>();
             services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IRoleService, RoleService>();
+            services.AddScoped<IAuthorizationEndpointService, AuthorizationEndpointService>();
             
         }
     }
